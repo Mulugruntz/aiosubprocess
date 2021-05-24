@@ -2,7 +2,7 @@ import asyncio
 import sys
 from datetime import timedelta, datetime
 from itertools import zip_longest
-from typing import Union
+from typing import Union, List, Tuple
 
 import pytest
 from aiosubprocess import Process
@@ -197,14 +197,14 @@ async def test_exec(event_loop, cmd, expected_stdout, expected_stderr):
     "cmd,expected_stdout,expected_stderr",
     [
         pytest.param(
-            "echo TEST; sleep 0.2; echo TEST2",
-            [(0, "TEST"), (0.2, "TEST2")],
+            "echo TEST; sleep 0.5; echo TEST2",
+            [(0.0, "TEST"), (0.5, "TEST2")],
             [],
             id="two_stdout_str",
         ),
         pytest.param(
-            "echo TEST; sleep 0.2; echo TEST2; sleep 0.3; echo TEST3",
-            [(0, "TEST"), (0.2, "TEST2"), (0.5, "TEST3")],
+            "echo TEST; sleep 0.5; echo TEST2; sleep 0.5; echo TEST3",
+            [(0.0, "TEST"), (0.5, "TEST2"), (0.5, "TEST3")],
             [],
             id="two_stdout_str",
         ),
@@ -213,7 +213,7 @@ async def test_exec(event_loop, cmd, expected_stdout, expected_stderr):
 async def test_realtime_shell(event_loop, cmd, expected_stdout, expected_stderr):
     cmd = get_command(cmd)
     output, errors = [], []
-    s_res = 0.05
+    s_res = 0.1
     aiosub = Process(
         cmd,
         loop=event_loop,
@@ -228,12 +228,18 @@ async def test_realtime_shell(event_loop, cmd, expected_stdout, expected_stderr)
     check_with_timestamps(errors, expected_stderr, s_res)
 
 
-def check_with_timestamps(received, expected, sleep_res):
-    first_ts = None
+def check_with_timestamps(
+    received: List[Tuple[datetime, str]],
+    expected: List[Tuple[float, str]],
+    sleep_res: float,
+) -> None:
+    if not received and not expected:
+        return
+    assert bool(received)
+    previous_ts = received[0][0]
     for (r_ts, result), (e_delta, expected) in zip_longest(received, expected):
         assert result == expected
-        if first_ts is None:
-            first_ts = r_ts
-        assert r_ts - first_ts - timedelta(seconds=e_delta) < timedelta(
-            seconds=sleep_res * 2
+        assert r_ts - previous_ts + timedelta(seconds=sleep_res * 2) >= timedelta(
+            seconds=e_delta
         )
+        previous_ts = r_ts
