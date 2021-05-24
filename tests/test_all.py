@@ -2,6 +2,7 @@ import asyncio
 import sys
 from datetime import timedelta, datetime
 from itertools import zip_longest
+from pathlib import Path
 from typing import Union, List, Tuple
 
 import pytest
@@ -27,6 +28,7 @@ def get_command(cmd: Union[str, list]) -> Union[str, list]:  # pragma: no cover
 @pytest.mark.skipif(sys.platform.startswith("win"), reason="does not run on windows")
 @pytest.mark.asyncio
 async def test_double_shell(event_loop):
+    Path("tempfile.log").touch()
     reader = Process(
         """for i in {1..5}
         do
