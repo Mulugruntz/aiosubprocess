@@ -1,0 +1,30 @@
+[build-system]
+requires = ["flit_core >=2,<3"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "aiosubprocess"
+author = "Samuel Giffard"
+author-email = "samuel@giffard.co"
+home-page = "https://github.com/Mulugruntz/aiosubprocess"
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Operating System :: OS Independent"
+    ]
+description-file = "README.md"
+requires = ["typing; python_version < '3.5'"]
+requires-python = ">=3.5"
+
+[tool.flit.metadata.requires-extra]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "pytest-asyncio"
+]
