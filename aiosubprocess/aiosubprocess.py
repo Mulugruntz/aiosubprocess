@@ -10,7 +10,7 @@ from itertools import count
 from typing import Callable, Tuple, Optional, Coroutine, Any
 
 __all__ = ["Process"]
-__version__ = "2021.05.24"
+__version__ = "2021.05.1"
 logger = logging.getLogger("aiosubprocess")
 
 SLEEP_RESOLUTION = 0.1
@@ -67,7 +67,8 @@ class Process:
         )
 
     async def _run(
-        self, create_subprocess_function: Callable[..., Coroutine[Any, Any, asyncioProcess]]
+        self,
+        create_subprocess_function: Callable[..., Coroutine[Any, Any, asyncioProcess]],
     ) -> bool:
         logger.info("%sAbout to start %s", self.__prefix, " ".join(self._run_command))
         self.child = await create_subprocess_function(stdout=PIPE, stderr=PIPE)

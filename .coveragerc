@@ -1,7 +1,7 @@
 [run]
 branch = True
 include =
-    aiosubprocess.py
+    src/*
     tests/*
 
 [report]

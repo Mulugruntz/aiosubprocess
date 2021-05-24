@@ -44,23 +44,12 @@ jobs:
       run: |
         pip install pytest
         flit install --pth-file
-        pytest --cov aiosubprocess tests/
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
-    - name: Coveralls Parallel
-      uses: coverallsapp/github-action@master
+        coverage run -m pytest tests
+        coverage report
+    - name: Code Climate Coverage Action
+      uses: paambaati/codeclimate-action@v2.7.5
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
-        github-token: ${{ secrets.github_token }}
-        flag-name: run-${{ matrix.os }}-py${{ matrix.python-version }}
-        parallel: true
-  finish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Coveralls Finished
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.github_token }}
-        parallel-finished: true
+        coverageCommand: coverage xml
+        debug: true
