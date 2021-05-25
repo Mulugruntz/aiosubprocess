@@ -1,4 +1,4 @@
-"""A zero-dependence async subprocess that keeps on getting stdout and stderr."""
+"""A zero-dependency async subprocess that keeps on getting stdout and stderr."""
 
 from .aiosubprocess import Process
 

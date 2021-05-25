@@ -8,7 +8,7 @@
 
 # aiosubprocess
 
-A zero-dependence async subprocess that keeps on getting stdout and stderr.
+A **zero-dependency** async subprocess that keeps on getting stdout and stderr.
 
 ## How to use
 
