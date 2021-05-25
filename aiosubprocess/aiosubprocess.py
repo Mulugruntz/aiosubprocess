@@ -1,4 +1,3 @@
-"""Boilerplate for asyncio applications"""
 
 import asyncio
 import logging
@@ -10,7 +9,6 @@ from itertools import count
 from typing import Callable, Tuple, Optional, Coroutine, Any
 
 __all__ = ["Process"]
-__version__ = "2021.05.1"
 logger = logging.getLogger("aiosubprocess")
 
 SLEEP_RESOLUTION = 0.1

@@ -1,0 +1,11 @@
+.pytest_cache
+dist
+.coverage
+coverage.xml
+.idea
+*.log
+*.mov
+
+# Because no dependency (except for testing)
+Pipfile
+Pipfile.lock
