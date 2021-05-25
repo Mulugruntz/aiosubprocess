@@ -4,7 +4,7 @@
 ![Tag](https://img.shields.io/github/v/tag/Mulugruntz/aiosubprocess.svg)
 ![pip install aiosubprocess](https://img.shields.io/badge/pip%20install-aiosubprocess-ff69b4.svg)
 [![PyPI version](https://img.shields.io/pypi/v/aiosubprocess.svg)](https://pypi.org/project/aiosubprocess/)
-[![This project uses calendar-based versioning scheme](https://img.shields.io/badge/calver-YYYY.0M.MINOR-22bfda.svg)](http://calver.org/)
+[![This project uses calendar-based versioning scheme](https://img.shields.io/badge/calver-YYYY.MM.MINOR-22bfda.svg)](http://calver.org/)
 [![Downloads](https://pepy.tech/badge/aiosubprocess)](https://pepy.tech/project/aiosubprocess)
 [![This project uses the "black" style formatter for Python code](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
 
