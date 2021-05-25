@@ -8,19 +8,21 @@ author = "Samuel Giffard"
 author-email = "samuel@giffard.co"
 home-page = "https://github.com/Mulugruntz/aiosubprocess"
 classifiers = [
+    "Framework :: AsyncIO",
     "License :: OSI Approved :: Apache Software License",
     "Natural Language :: English",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.5",
     "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
-    "Operating System :: OS Independent"
+    "Operating System :: OS Independent",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
     ]
 description-file = "README.md"
-requires = ["typing; python_version < '3.5'"]
-requires-python = ">=3.5"
+requires-python = ">=3.6"
 
 [tool.flit.metadata.requires-extra]
 dev = [
