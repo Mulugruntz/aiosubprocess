@@ -1,11 +1,29 @@
 # aiosubprocess
 
-An async subprocess that keeps on getting stdout and stderr.
+A zero-dependence async subprocess that keeps on getting stdout and stderr.
 
 ## How to use
 
-An example where one process writes to a file 
-and a second process logs the content of the file
+#### Example 1: Hello World
+A classic Hello World. It prints `Hello World!` in the shell and
+redirects the stdout to `print()`.
+```python
+import asyncio
+from aiosubprocess import Process
+
+asyncio.get_event_loop().run_until_complete(
+    Process("echo Hello World!", stdout=print).shell()
+)
+```
+```shell
+$> python ex1_minimal.py
+[AIO Subprocess-0] Hello World!
+
+Process finished with exit code 0
+```
+
+#### Example 2: Two Processes
+One process writes to a file, and a second process logs the content of the file
 in real time.
 
 ```python
