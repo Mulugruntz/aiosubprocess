@@ -47,6 +47,7 @@ jobs:
         coverage run -m pytest tests
         coverage report
     - name: Code Climate Coverage Action
+      if: matrix.os != 'windows-latest'
       uses: paambaati/codeclimate-action@v2.7.5
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
