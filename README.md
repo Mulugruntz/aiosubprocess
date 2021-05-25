@@ -65,7 +65,7 @@ assert gathered.result() == [True, True]
 
 Which does exactly this:
 
-![Example animation](docs/example1.gif)
+![Example animation](https://github.com/Mulugruntz/aiosubprocess/blob/master/docs/example2.gif?raw=true)
 
 ## Why?
 
